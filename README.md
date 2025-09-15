@@ -16,7 +16,7 @@ Supports animations, props, stages/minigames, cancel/death monitoring, networked
 - Automatic cleanup server and client side
 - Prop support: multiple props per action
 - Customizable cancel button
-- Animation hookss
+- Animation hooks
 - Themes
 
 ## Installation
