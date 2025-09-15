@@ -1,0 +1,283 @@
+@import url("https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap");
+
+$font-family: 'Didact Gothic', sans-serif;
+$color-bg: #1e1e1e;
+$color-text: #fff;
+$color-text-muted: #ccc;
+$color-text-secondary: #aaa;
+$color-footer: #888;
+$color-controls: #bbb;
+$color-dot-inactive: #555;
+$color-dot-active: #ff9500;
+$color-progress-bg: rgba(255, 255, 255, 0.1);
+$color-progress-bar: #ff9500;
+$border-color: rgba(255, 255, 255, 0.5);
+$border-radius: 16px;
+$progress-height: 8px;
+$dot-size: 10px;
+$font-size-title: 18px;
+$font-size-status: 14px;
+$font-size-countdown: 12px;
+$font-size-footer: 12px;
+$font-size-controls: 12px;
+$gap-dot: 6px;
+$gap-header: 10px;
+$shadow-box: 0 4px 20px rgba(0, 0, 0, 0.5);
+
+body {
+    margin: 0;
+    font-family: $font-family;
+    background-color: transparent;
+    color: $color-text;
+    height: 100vh;
+    display: flex;
+}
+
+.progress-app-wrapper {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+
+    &--center,
+    &--top-left,
+    &--top-right,
+    &--bottom-left,
+    &--bottom-right,
+    &--center-top,
+    &--center-bottom {
+        display: flex;
+    }
+
+    &--center {
+        justify-content: center;
+        align-items: center;
+    }
+
+    &--top-left {
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    &--top-right {
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
+
+    &--bottom-left {
+        justify-content: flex-start;
+        align-items: flex-end;
+    }
+
+    &--bottom-right {
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+
+    &--center-top {
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    &--center-bottom {
+        justify-content: center;
+        align-items: flex-end;
+        margin-top: -50px;
+    }
+}
+
+.progress-app {
+    background-color: $color-bg;
+    border: 2px solid $border-color;
+    border-radius: $border-radius;
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: $shadow-box;
+    pointer-events: auto;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &-left {
+            display: flex;
+            align-items: center;
+            gap: $gap-header;
+        }
+    }
+
+    &__title {
+        font-size: $font-size-title;
+        font-weight: 700;
+    }
+
+    &__status-dots {
+        display: flex;
+        align-items: center;
+        gap: $gap-dot;
+
+        & .progress-app__dot {
+            width: $dot-size;
+            height: $dot-size;
+            border-radius: 3px;
+            background-color: $color-dot-inactive;
+            transition: background-color 0.3s;
+
+            &--active {
+                background-color: $color-dot-active;
+            }
+        }
+    }
+
+    &__progress-container--segmented {
+        $progress-height: 26px;
+        $color-progress-bg: #5f5f5f;
+        $color-progress-bar: #81ce97;
+        $segments: 25;
+        $gap: 6px;
+
+        width: 100%;
+        height: $progress-height !important;
+        background-color: $color-progress-bg;
+        border-radius: 4px;
+        overflow: hidden;
+        margin: 10px 0;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(to right,
+                    lighten($color-progress-bg, 10%),
+                    lighten($color-progress-bg, 10%) calc(100% / $segments - $gap),
+                    $color-bg calc(100% / $segments - $gap),
+                    $color-bg calc(100% / $segments));
+            pointer-events: none;
+        }
+
+        .progress-app__progress-bar {
+            height: 100%;
+            width: 0;
+            background-color: $color-progress-bar;
+            transition: background-color 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+    }
+
+    &__progress-container {
+        width: 100%;
+        height: $progress-height;
+        background-color: $color-progress-bg;
+        border-radius: 4px;
+        overflow: hidden;
+        margin: 10px 0;
+
+        .progress-app__progress-bar {
+            height: 100%;
+            width: 0;
+            background-color: $color-progress-bar;
+            transition: width 0.3s ease-in-out, background-color 0.5s ease;
+        }
+    }
+
+    &__progress-container--striped {
+        .progress-app__progress-bar {
+            background-image: linear-gradient(45deg,
+                    rgba(255, 255, 255, 0.2) 25%,
+                    transparent 25%,
+                    transparent 50%,
+                    rgba(255, 255, 255, 0.2) 50%,
+                    rgba(255, 255, 255, 0.2) 75%,
+                    transparent 75%,
+                    transparent);
+            background-size: 20px 20px;
+        }
+    }
+
+    &__status-text {
+        font-size: $font-size-status;
+        color: $color-text-muted;
+        margin-bottom: 6px;
+        min-height: 24px;
+    }
+
+    &__countdown {
+        font-size: $font-size-countdown;
+        color: $color-text-secondary;
+        text-align: right;
+        margin-bottom: 10px;
+    }
+
+    &__footer {
+        font-size: $font-size-footer;
+        text-align: center;
+        color: $color-footer;
+        padding: 4px 0px;
+
+        code {
+            background-color: rgb(0, 0, 0);
+            color: white;
+            padding: 4px 6px;
+            margin: 0px 2px;
+            border-radius: 6px;
+        }
+    }
+
+    &__controls {
+        margin-top: 15px;
+        font-size: $font-size-controls;
+        text-align: center;
+        color: $color-controls;
+
+        select {
+            margin-left: 5px;
+            padding: 3px 6px;
+            border-radius: 4px;
+            border: none;
+            background: #2a2a2a;
+            color: $color-text;
+        }
+    }
+}
+
+@mixin position-animation($name, $dx: 0, $dy: 0, $scale: 1) {
+
+    .animation-#{$name}-enter-from,
+    .animation-#{$name}-leave-to {
+        opacity: 0;
+
+        @if $scale !=1 {
+            transform: scale($scale);
+        }
+
+        @else {
+            transform: translate(#{$dx}, #{$dy});
+        }
+    }
+
+    .animation-#{$name}-enter-active {
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+
+    .animation-#{$name}-enter-to,
+    .animation-#{$name}-leave-from {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+
+    .animation-#{$name}-leave-active {
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+}
+
+@include position-animation(center-bottom, 0, 50px);
+@include position-animation(center-top, 0, -50px);
+@include position-animation(center, 0, 0, 0.9);
+@include position-animation(top-left, -50px, -50px);
+@include position-animation(top-right, 50px, -50px);
+@include position-animation(bottom-left, -50px, 50px);
+@include position-animation(bottom-right, 50px, 50px);

@@ -1,0 +1,309 @@
+@import url("https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap");
+body {
+  margin: 0;
+  font-family: "Didact Gothic", sans-serif;
+  background-color: transparent;
+  color: #fff;
+  height: 100vh;
+  display: flex;
+}
+
+.progress-app-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.progress-app-wrapper--center, .progress-app-wrapper--top-left, .progress-app-wrapper--top-right, .progress-app-wrapper--bottom-left, .progress-app-wrapper--bottom-right, .progress-app-wrapper--center-top, .progress-app-wrapper--center-bottom {
+  display: flex;
+}
+.progress-app-wrapper--center {
+  justify-content: center;
+  align-items: center;
+}
+.progress-app-wrapper--top-left {
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.progress-app-wrapper--top-right {
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+.progress-app-wrapper--bottom-left {
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+.progress-app-wrapper--bottom-right {
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.progress-app-wrapper--center-top {
+  justify-content: center;
+  align-items: flex-start;
+}
+.progress-app-wrapper--center-bottom {
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: -50px;
+}
+
+.progress-app {
+  background-color: #1e1e1e;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
+  padding: 10px 20px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  pointer-events: auto;
+}
+.progress-app__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.progress-app__header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.progress-app__title {
+  font-size: 18px;
+  font-weight: 700;
+}
+.progress-app__status-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.progress-app__status-dots .progress-app__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background-color: #555;
+  transition: background-color 0.3s;
+}
+.progress-app__status-dots .progress-app__dot--active {
+  background-color: #ff9500;
+}
+.progress-app__progress-container--segmented {
+  width: 100%;
+  height: 26px !important;
+  background-color: #5f5f5f;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 10px 0;
+  position: relative;
+}
+.progress-app__progress-container--segmented::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(to right, rgb(120.5, 120.5, 120.5), rgb(120.5, 120.5, 120.5) calc(4% - 6px), #1e1e1e calc(4% - 6px), #1e1e1e 4%);
+  pointer-events: none;
+}
+.progress-app__progress-container--segmented .progress-app__progress-bar {
+  height: 100%;
+  width: 0;
+  background-color: #81ce97;
+  transition: background-color 0.5s ease;
+  position: relative;
+  z-index: 1;
+}
+.progress-app__progress-container {
+  width: 100%;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+.progress-app__progress-container .progress-app__progress-bar {
+  height: 100%;
+  width: 0;
+  background-color: #ff9500;
+  transition: width 0.3s ease-in-out, background-color 0.5s ease;
+}
+.progress-app__progress-container--striped .progress-app__progress-bar {
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+  background-size: 20px 20px;
+}
+.progress-app__status-text {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 6px;
+  min-height: 24px;
+}
+.progress-app__countdown {
+  font-size: 12px;
+  color: #aaa;
+  text-align: right;
+  margin-bottom: 10px;
+}
+.progress-app__footer {
+  font-size: 12px;
+  text-align: center;
+  color: #888;
+  padding: 4px 0px;
+}
+.progress-app__footer code {
+  background-color: rgb(0, 0, 0);
+  color: white;
+  padding: 4px 6px;
+  margin: 0px 2px;
+  border-radius: 6px;
+}
+.progress-app__controls {
+  margin-top: 15px;
+  font-size: 12px;
+  text-align: center;
+  color: #bbb;
+}
+.progress-app__controls select {
+  margin-left: 5px;
+  padding: 3px 6px;
+  border-radius: 4px;
+  border: none;
+  background: #2a2a2a;
+  color: #fff;
+}
+
+.animation-center-bottom-enter-from,
+.animation-center-bottom-leave-to {
+  opacity: 0;
+  transform: translate(0, 50px);
+}
+
+.animation-center-bottom-enter-active {
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.animation-center-bottom-enter-to,
+.animation-center-bottom-leave-from {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+.animation-center-bottom-leave-active {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.animation-center-top-enter-from,
+.animation-center-top-leave-to {
+  opacity: 0;
+  transform: translate(0, -50px);
+}
+
+.animation-center-top-enter-active {
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.animation-center-top-enter-to,
+.animation-center-top-leave-from {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+.animation-center-top-leave-active {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.animation-center-enter-from,
+.animation-center-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.animation-center-enter-active {
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.animation-center-enter-to,
+.animation-center-leave-from {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+.animation-center-leave-active {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.animation-top-left-enter-from,
+.animation-top-left-leave-to {
+  opacity: 0;
+  transform: translate(-50px, -50px);
+}
+
+.animation-top-left-enter-active {
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.animation-top-left-enter-to,
+.animation-top-left-leave-from {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+.animation-top-left-leave-active {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.animation-top-right-enter-from,
+.animation-top-right-leave-to {
+  opacity: 0;
+  transform: translate(50px, -50px);
+}
+
+.animation-top-right-enter-active {
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.animation-top-right-enter-to,
+.animation-top-right-leave-from {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+.animation-top-right-leave-active {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.animation-bottom-left-enter-from,
+.animation-bottom-left-leave-to {
+  opacity: 0;
+  transform: translate(-50px, 50px);
+}
+
+.animation-bottom-left-enter-active {
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.animation-bottom-left-enter-to,
+.animation-bottom-left-leave-from {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+.animation-bottom-left-leave-active {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.animation-bottom-right-enter-from,
+.animation-bottom-right-leave-to {
+  opacity: 0;
+  transform: translate(50px, 50px);
+}
+
+.animation-bottom-right-enter-active {
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.animation-bottom-right-enter-to,
+.animation-bottom-right-leave-from {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+.animation-bottom-right-leave-active {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}

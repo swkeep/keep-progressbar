@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>keep-progressbar NUI</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="themes.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+  <div id="app">
+    <transition :name="`animation-${window_config.position || 'center-bottom'}`">
+      <div class="progress-app-wrapper" :class="`progress-app-wrapper--${window_config.position || 'center-bottom'}`"
+        :data-theme="window_config.theme || 'default'" v-if="is_active">
+
+        <div class="progress-app">
+          <div class="progress-app__header">
+            <div class="progress-app__header-left">
+              <i :class="['progress-app__icon', window_config.icon]" :style="{ color: window_config.iconColor }"></i>
+              <h1 class="progress-app__title">{{ window_config.label }}</h1>
+            </div>
+            <div class="progress-app__status-dots" v-if="stages.length > 1">
+              <div v-for="(stage, index) in stages" :key="index" class="progress-app__dot" :class="{ 
+                  'progress-app__dot--active': stage.finished === true
+                }">
+              </div>
+            </div>
+          </div>
+
+          <div class="progress-app__status-text" v-if="stages.length > 1">
+            {{ stages[current_stage_index].message }}
+          </div>
+
+          <div class="progress-app__countdown">
+            Estimated time left: {{ remaining_time.toFixed(1) }}s
+          </div>
+
+          <div class="progress-app__progress-container progress-app__progress-container--segmented">
+            <div class="progress-app__progress-bar"
+              :style="{ width: progress + '%' , backgroundColor: stages[current_stage_index].progressColor}">
+            </div>
+          </div>
+
+          <div class="progress-app__footer" v-if="can_cancel">
+            Press X to
+            <code>Cancel</code>
+          </div>
+        </div>
+      </div>
+    </transition>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

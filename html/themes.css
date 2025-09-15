@@ -1,0 +1,46 @@
+[data-theme=theme-1] .progress-app {
+  background-color: rgba(30, 28, 26, 0.95);
+  background-image: linear-gradient(rgba(60, 54, 48, 0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(60, 54, 48, 0.6) 1px, transparent 1px);
+  background-size: 15px 15px;
+  border: 2px solid #5a4c3a;
+  box-shadow: 0 0 0 1px #2a2622, inset 0 0 15px rgba(0, 0, 0, 0.7);
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-family: "Arial Narrow", sans-serif;
+  letter-spacing: 0.5px;
+}
+[data-theme=theme-1] .progress-app__title {
+  color: #d6a33d;
+  text-shadow: 0 0 4px rgba(214, 163, 61, 0.4);
+}
+[data-theme=theme-1] .progress-app__status-text {
+  color: #bba78a;
+}
+[data-theme=theme-1] .progress-app__countdown {
+  color: #e4a220;
+  font-weight: bold;
+}
+[data-theme=theme-1] .progress-app__footer {
+  color: #8a7c68;
+}
+[data-theme=theme-1] .progress-app__footer code {
+  background-color: #2a2622;
+  border: 1px solid #5a4c3a;
+  color: #d6a33d;
+}
+[data-theme=theme-1] .progress-app__controls {
+  color: #d6a33d;
+}
+[data-theme=theme-1] .progress-app__controls select {
+  background: #3a3228;
+  border: 1px solid #5a4c3a;
+  color: #e4a220;
+  border-radius: 6px;
+}
+[data-theme=theme-1] .progress-app__status-dots .progress-app__dot {
+  background-color: #5a4c3a;
+}
+[data-theme=theme-1] .progress-app__status-dots .progress-app__dot--active {
+  background-color: #d6a33d;
+  box-shadow: 0 0 6px rgba(214, 163, 61, 0.6);
+}
