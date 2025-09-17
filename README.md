@@ -21,18 +21,66 @@ Supports animations, props, stages/minigames, cancel/death monitoring, networked
 
 ## Installation
 
-1. Clone or download this repo into your FiveM resources folder:
+### 1. Download
 
-    - For `QBCore`: move the `progressbar` resource from `[standalone]` to somewhere else.
+Clone or download this repository into your FiveM `resources` folder.
+
+#### 1.1. QBCore
+
+If using **QBCore**, move/delete the `progressbar` resource from your `[standalone]` and place `keep-progressbar` in `[standalone]`
+
+```bash
+resources/[standalone]/keep-progressbar
+```
+
+#### 1.2. ESX
+
+If using **ESX**, move/delete the `esx_progressbar` resource from your `[core]` and place `keep-progressbar` in `[core]`
+
+```bash
+resources/[core]/keep-progressbar
+```
+
+### 1.3 ox_lib
+
+To integrate progress bars made for **ox\_lib**:
+
+1. First open:
+
+   ```
+   ox_lib/resource/interface/progress.lua
+   ```
+
+2. **Make a backup** of the file.
+3. Delete all contents, then replace them with:
+
+    ```lua
+    function lib.progressBar(data)
+        return exports['keep-progressbar']:ox_lib_progressBar(data)
+    end
+
+    function lib.progressCircle(data)
+        return exports['keep-progressbar']:ox_lib_progressBar(data)
+    end
+
+    function lib.cancelProgress()
+        exports['keep-progressbar']:cancelProgress()
+    end
+
+    function lib.progressActive()
+        exports['keep-progressbar']:progressActive()
+    end
+    ```
+
+4. Ensure it's loading before ox_lib and it's placed at `[standalont]`.
 
     ```bash
     resources/[standalone]/keep-progressbar
     ```
 
-2. Add to your `server.cfg`:
-
     ```cfg
     ensure keep-progressbar
+    ensure ox_lib
     ```
 
 ## Usage
