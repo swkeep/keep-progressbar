@@ -9,6 +9,7 @@ Progress = {
     _controls = {
         disableMouse = { 1, 2, 106 },
         disableMovement = { 30, 31, 36, 21, 75 },
+        disableSprint = { 30, 31, 36, 21, 75 },
         disableCarMovement = { 63, 64, 71, 72 },
         disableCombat = { 24, 25, 37, 47, 58, 140, 141, 142, 143, 263, 264, 257 }
     },
@@ -61,10 +62,15 @@ end
 
 local function _attach_entity_to_ped(obj, prop, ped)
     local boneIndex = GetPedBoneIndex(ped, prop.bone or 60309)
+    local rotation_order = 0
+
+    if prop.rotOrder then
+        rotation_order = prop.rotOrder
+    end
     AttachEntityToEntity(obj, ped, boneIndex,
         prop.coords.x, prop.coords.y, prop.coords.z,
         prop.rotation.x, prop.rotation.y, prop.rotation.z,
-        true, true, false, true, 0, true
+        true, true, false, true, rotation_order, true
     )
 end
 
