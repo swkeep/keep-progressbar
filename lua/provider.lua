@@ -16,7 +16,7 @@ end
 --        QBCORE
 -- -------------------- --
 
-if GetResourceState("qb-core") == "started" then
+if GetResourceState("qb-core") ~= "missing" then
     local _exports = {
         Progress = function(data, onFinish)
             Progress:Start(data, nil, onFinish)
@@ -72,7 +72,7 @@ end
 --        ox_lib
 -- -------------------- --
 
-if GetResourceState("ox_lib") == "started" then
+if GetResourceState("ox_lib") ~= "missing" then
     local function cancel()
         if not Progress._task_instance.canCancel then return end
 
@@ -153,7 +153,7 @@ end
 --         ESX
 -- -------------------- --
 
-if GetResourceState("es_extended") == "started" then
+if GetResourceState("es_extended") ~= "missing" then
     local function cancel()
         if not Progress._task_instance.canCancel then return end
 
