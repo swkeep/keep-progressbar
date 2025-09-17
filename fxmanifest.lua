@@ -34,10 +34,9 @@ server_scripts {
 files {
     'html/index.html',
     'html/style.css',
-    'html/style.css.map',
     'html/themes.css',
-    'html/themes.css.map',
     'html/script.js'
 }
 
 provide 'progressbar'
+provide 'esx_progressbar'
