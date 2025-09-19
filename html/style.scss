@@ -33,6 +33,10 @@ body {
     display: flex;
 }
 
+code {
+    font-family: $font-family;
+}
+
 .progress-app-wrapper {
     position: fixed;
     width: 100%;
@@ -83,6 +87,18 @@ body {
         justify-content: center;
         align-items: flex-end;
         margin-top: -50px;
+    }
+
+    &[data-direction=rtl] {
+        direction: rtl;
+
+        .progress-app__countdown {
+            justify-content: left;
+        }
+    }
+
+    &[data-direction=ltr] {
+        direction: ltr;
     }
 }
 
@@ -208,8 +224,17 @@ body {
     &__countdown {
         font-size: $font-size-countdown;
         color: $color-text-secondary;
-        text-align: right;
+        display: flex;
+        align-items: center;
+        justify-content: right;
         margin-bottom: 10px;
+
+        &__timer {
+            font-weight: bold;
+            width: 2.2rem;
+            display: flex;
+            justify-content: center;
+        }
     }
 
     &__footer {

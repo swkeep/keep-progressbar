@@ -1,7 +1,5 @@
-local examples = false
-
 if not GetResourceState('interactionMenu') == 'started' then return end
-if not examples then return end
+if not Config.devMode then return end
 
 local objects = {}
 local function spawn_object(objectModel, c)
@@ -739,7 +737,7 @@ end
 CreateThread(function()
     Wait(500)
 
-    on_condition()
+    stages_with_animations()
 end)
 
 AddEventHandler('onResourceStop', function(resource)

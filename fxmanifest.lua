@@ -21,8 +21,10 @@ repository 'https://github.com/swkeep/keep-progressbar'
 ui_page 'html/index.html'
 
 client_scripts {
-    '@ox_lib/init.lua',
+    -- '@ox_lib/init.lua',
+    'lua/config.lua',
     'lua/client.lua',
+    'lua/locales/*.lua',
     'lua/provider.lua',
     'lua/examples.lua',
 }

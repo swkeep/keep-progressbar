@@ -25,7 +25,13 @@ Progress = {
             fn(data)
             cb("ok")
         end)
-    end
+    end,
+
+    _locales = {},
+    _registerLocale = function(self, lang, t, ui_direction)
+        t.ui_direction = ui_direction or 'ltr'
+        self._locales[lang] = t
+    end,
 }
 
 local function _load_resource(request_fn, check_fn, name, timeout)
@@ -396,7 +402,7 @@ function Progress:Start(task, on_start, on_finish, on_tick)
         canCancel = task.canCancel ~= false,
         stages = task.stages or {},
         duration = task.duration,
-        theme = task.theme,
+        theme = task.theme or Config.theme,
         position = task.position,
     }
 
@@ -409,6 +415,7 @@ end
 
 Progress:_registerNUI("ready", function(data)
     Progress.is_nui_ready = true
+    Progress:_sendNUI("SET_LOCALE", { locale = Progress._locales[Config.locale] or Progress._locales["en"] })
 end)
 
 Progress:_registerNUI("progressFinished", function(data)

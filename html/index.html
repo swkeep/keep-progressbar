@@ -14,7 +14,7 @@
   <div id="app">
     <transition :name="`animation-${window_config.position || 'center-bottom'}`">
       <div class="progress-app-wrapper" :class="`progress-app-wrapper--${window_config.position || 'center-bottom'}`"
-        :data-theme="window_config.theme || 'default'" v-if="is_active">
+        :data-theme="window_config.theme || 'default'" :data-direction="locale.ui_direction" v-if="is_active">
 
         <div class="progress-app">
           <div class="progress-app__header">
@@ -35,7 +35,12 @@
           </div>
 
           <div class="progress-app__countdown">
-            Estimated time left: {{ remaining_time.toFixed(1) }}s
+            <div class="progress-app__countdown__text">
+              {{ locale.estimated_time_left }}
+            </div>
+            <div class="progress-app__countdown__timer">
+              {{ remaining_time }} {{ locale.time_unit || 's' }}
+            </div>
           </div>
 
           <div class="progress-app__progress-container progress-app__progress-container--segmented">
@@ -45,8 +50,7 @@
           </div>
 
           <div class="progress-app__footer" v-if="can_cancel">
-            Press X to
-            <code>Cancel</code>
+            <div v-html="locale.can_cancel"></div>
           </div>
         </div>
       </div>
